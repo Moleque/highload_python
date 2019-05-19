@@ -1,12 +1,5 @@
-# import asyncio
-# import uvloop
-
-# async def main():
-#     # Main entry-point.
-#     ...
-
 from settings.config import Settings
-# from server import Server
+# from server.server import Server
 
 IP = "0.0.0.0"
 PORT = 80
@@ -19,10 +12,4 @@ if __name__ == "__main__":
         print("config file not found\nset default setting")
 
     print(config.cpu, config.thread, config.root)
-    # server = Server(IP, PORT, "/var/www/html", 2)
-
-    
-
-
-    # uvloop.install()
-#     asyncio.run(main())
+    # server = Server(IP, PORT, config.root, config.cpu)

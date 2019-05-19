@@ -1,25 +1,11 @@
 import os
 import re
 
-__all__ = (
-    'Config'
-)
-
 fields = {
-    'cpu_limit' : {
-        'pattern' : re.compile(r'cpu_limit\s+(?P<cpu_limit>\d+)'),
-        'type'    : int,
-    },
-    'thread_limit' : {
-        'pattern' : re.compile(r'thread_limit\s+(?P<thread_limit>\d+)'),
-        'type'    : int,
-    },
-    'document_root' : {
-        'pattern' : re.compile(r'document_root\s+(?P<document_root>[^\s]+)'),
-        'type'    : str,
-    },
+    'cpu_limit' : re.compile(r'cpu_limit\s+(?P<cpu_limit>\d+)'),
+    'thread_limit' : re.compile(r'thread_limit\s+(?P<thread_limit>\d+)'),
+    'document_root' : re.compile(r'document_root\s+(?P<document_root>[^\s]+)'),
 }
-
 
 class Settings:
 
@@ -37,8 +23,7 @@ class Settings:
             content = file.read()
 
             for field in fields:
-                param = fields[field]
-                match = param['pattern'].search(content)
+                match = fields[field].search(content)
                 if match:
                     if field == 'cpu_limit':
                         self.cpu = match.group(field)
