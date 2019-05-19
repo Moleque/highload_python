@@ -26,9 +26,9 @@ class Settings:
                 match = fields[field].search(content)
                 if match:
                     if field == 'cpu_limit':
-                        self.cpu = match.group(field)
+                        self.cpu = int(match.group(field))
                     elif field == 'thread_limit':
-                        self.thread = match.group(field)
+                        self.thread = int(match.group(field))
                     elif field == 'document_root':
                         self.root = match.group(field)
         return True

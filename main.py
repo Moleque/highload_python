@@ -1,5 +1,5 @@
 from settings.config import Settings
-# from server.server import Server
+from server.server import Server
 
 IP = "0.0.0.0"
 PORT = 80
@@ -11,5 +11,4 @@ if __name__ == "__main__":
     if not config.parseConfig(CFG_PATH):
         print("config file not found\nset default setting")
 
-    print(config.cpu, config.thread, config.root)
-    # server = Server(IP, PORT, config.root, config.cpu)
+    server = Server(IP, PORT, config.root, config.cpu)

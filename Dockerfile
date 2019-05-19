@@ -6,7 +6,7 @@ RUN apt-get -y update
 RUN pip install uvloop
 
 RUN  mkdir -p /home/server
-COPY src /home/server
+COPY . /home/server
 
 WORKDIR /home/server
 

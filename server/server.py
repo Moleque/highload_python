@@ -1,21 +1,20 @@
-# import asyncio
 import socket
 import multiprocessing
 
-from worker import Worker
+from server.worker import Worker
 
 CONNECTIONS_COUNT = 1024
 
 class Server:
 
     def __init__(self, ip, port, rootDir, threadsCount):
-        # конфигурирование сокета
+        # конфигурирование неблокирующего сокета
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.bind((ip, port))
         sock.listen(CONNECTIONS_COUNT)
         sock.setblocking(False)
 
-        # создание воркеров для обработки запросов
+        # создание воркеров
         workers = []
         for _ in range(threadsCount):
             process = multiprocessing.Process(target = Worker, args = (sock, rootDir))
@@ -29,5 +28,4 @@ class Server:
         except KeyboardInterrupt:
             for process in workers:
                 process.terminate()
-
         print('server stoped')
